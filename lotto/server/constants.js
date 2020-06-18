@@ -1,2 +1,2 @@
-exports.BASE_URL = "http://www.nlotto.co.kr/common.do";
+exports.BASE_URL = "https://www.dhlottery.co.kr/common.do";
 exports.PORT = 8000;
