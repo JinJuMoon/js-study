@@ -23,9 +23,9 @@
       const onChangeImage = event => {
         event.preventDefault();
         fetch(url)
-                .then(data => data.json())
-                .then(data => {
-                  document.getElementById("dog-image").src = data.message;
+                .then(response => response.json())
+                .then(({message}) => {
+                  document.getElementById("dog-image").src = message;
                 })
       }
 

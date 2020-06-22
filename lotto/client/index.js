@@ -10,7 +10,7 @@ function Lotto() {
         const url = `http://localhost:8000/lotto/${round}`;
 
         fetch(url)
-            .then(data => data.json())
+            .then(response => response.json())
             .then(data => {
                 winningLotto.winningNumbers = data.winningNumbers.sort((a, b) => a - b);
                 winningLotto.bonus = data.bonus;
