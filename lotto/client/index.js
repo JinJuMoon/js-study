@@ -1,4 +1,4 @@
-import { winningLottoTemplate, randomLottoTemplate } from './template.js'
+import { winningLottoTemplate, winningBonusTemplate, randomLottoTemplate } from './template.js'
 import { EVENT_TYPE, INSERT_POSITION } from "./constants.js";
 
 function Lotto() {
@@ -15,7 +15,8 @@ function Lotto() {
                 winningLotto.winningNumbers = data.winningNumbers.sort((a, b) => a - b);
                 winningLotto.bonus = data.bonus;
 
-                $lottoResult.innerHTML = winningLottoTemplate(winningLotto);
+                $lottoResult.innerHTML = winningLotto.winningNumbers.map(number => winningLottoTemplate(number)).join("");
+                $lottoResult.insertAdjacentHTML(INSERT_POSITION.BEFORE_END, winningBonusTemplate(winningLotto.bonus));
             })
     }
 
@@ -24,12 +25,10 @@ function Lotto() {
         const $lottoQuantity = document.querySelector("#lotto-quantity");
         const $lottos = document.querySelector("#lottos");
 
-        $lottoQuantity.innerHTML = lottoCount;
-
-        const randomNumbers = getRandomNumbers();
+        $lottoQuantity.innerText = lottoCount;
 
         for (let i = 0; i < lottoCount; i++) {
-            const htmlToInsert = randomLottoTemplate(randomNumbers);
+            const htmlToInsert = randomLottoTemplate(getRandomNumbers());
             if (i === 0) {
                 $lottos.innerHTML = htmlToInsert;
             } else {
@@ -39,7 +38,7 @@ function Lotto() {
 
         function getRandomNumbers() {
             const numbers = [];
-            for (; numbers.length < 6;) {
+            while (numbers.length < 6) {
                 const randomNumber = getRandomNumber();
                 if (!numbers.includes(randomNumber)) {
                     numbers.push(randomNumber);
@@ -50,7 +49,7 @@ function Lotto() {
         }
 
         function getRandomNumber() {
-            return Math.floor(Math.random() * (45 - 1 + 1)) + 1;
+            return Math.floor(Math.random() * (45)) + 1;
         }
     }
 
