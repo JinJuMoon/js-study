@@ -1,4 +1,5 @@
 import { winningLottoTemplate, randomLottoTemplate } from './template.js'
+import { EVENT_TYPE, INSERT_POSITION } from "./constants.js";
 
 function Lotto() {
     const winningLotto = {};
@@ -30,7 +31,7 @@ function Lotto() {
             if (i === 0) {
                 $lottos.innerHTML = htmlToInsert;
             } else {
-                $lottos.insertAdjacentHTML('beforeend', htmlToInsert);
+                $lottos.insertAdjacentHTML(INSERT_POSITION.BEFORE_END, htmlToInsert);
             }
         }
 
@@ -59,7 +60,7 @@ function Lotto() {
 
     this.init = () => {
         const $buyButton = document.querySelector("#buy-button");
-        $buyButton.addEventListener("click", onSubmit);
+        $buyButton.addEventListener(EVENT_TYPE.CLICK, onSubmit);
     }
 }
 
