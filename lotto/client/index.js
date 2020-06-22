@@ -6,13 +6,15 @@ function Lotto() {
 
     const getWinningLotto = () => {
         const round = document.querySelector("#input-lotto-round").value;
-        fetch(`http://localhost:8000/lotto/${round}`)
+        const $lottoResult = document.querySelector("#lotto-result");
+        const url = `http://localhost:8000/lotto/${round}`;
+
+        fetch(url)
             .then(data => data.json())
             .then(data => {
                 winningLotto.winningNumbers = data.winningNumbers.sort((a, b) => a - b);
                 winningLotto.bonus = data.bonus;
 
-                const $lottoResult = document.querySelector("#lotto-result");
                 $lottoResult.innerHTML = winningLottoTemplate(winningLotto);
             })
     }
