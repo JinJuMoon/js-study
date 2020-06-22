@@ -53,7 +53,7 @@ function Lotto() {
         }
     }
 
-    const onSubmit = async event => {
+    const onClick = async event => {
         event.preventDefault();
         await getWinningLotto();
         await getRandomLottos();
@@ -61,7 +61,7 @@ function Lotto() {
 
     this.init = () => {
         const $buyButton = document.querySelector("#buy-button");
-        $buyButton.addEventListener(EVENT_TYPE.CLICK, onSubmit);
+        $buyButton.addEventListener(EVENT_TYPE.CLICK, onClick);
     }
 }
 
